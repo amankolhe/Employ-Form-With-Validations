@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Employee Details</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Add your custom CSS styling here */
+  </style>
+</head>
+<body class="page2" onload="toggleCTCInput()">
+
+
+
+  <div class="container-fluid bg-dark text-light py-3">
+
+    <header class="text-center">
+      <h1 class="display-6">WELCOME TO DTHRILL SOFTWARE SOLUTIONS LLP</h1>
+    </header>
+  </div>
+
+
+  <section class="container my-2 bg-dark w-50 text-light vh-10" >
+
+  <form id="detailsForm" class="forumm row g-3 p-3 forumm"  >
+    <label for="lastCompanyName">Last Company Name:</label>
+    <input type="text" id="lastCompanyName" required>
+    <br>
+
+    <label for="designation">Designation in Last Company:</label>
+    <input type="text" id="designation" required>
+    <br>
+
+    <label for="hscMarks">Marks in HSC:</label>
+    <input type="number" id="hscMarks" required>
+    <br>
+
+    <label for="sscMarks">Marks in SSC:</label>
+    <input type="number" id="sscMarks" required>
+    <br>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" required>
+    <br>
+
+    <label for="employmentStatus">Employment Status:</label>
+    <select id="employmentStatus" onchange="toggleCTCInput()">
+      <option value="fresher">Fresher</option>
+      <option value="lastCTC">Last CTC</option>
+    </select>
+
+    <div id="ctcInputContainer" style="display: none;">
+      <label for="ctc"> Current CTC:</label>
+      <input type="number" id="ctc" required>
+      <br>
+      <label for="ctc1"> Expected CTC:</label>
+      <input type="number" id="ctc1" required>
+    
+      <div id="joiningTimeContainer" style="display: none;">
+        <label for="joiningTime">Joining Time:</label>
+        <select id="joiningTime">
+          <option value="immediate">Immediate Joiner</option>
+          <option value="15days">15 Days</option>
+          <option value="30days">30 Days</option>
+          <option value="2months">2 Months</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="validateDetailsForm()">Submit</button>
+  </form>
+
+
+</section>
+
+  <script>
+  function toggleCTCInput() {
+    var ctcInputContainer = document.getElementById("ctcInputContainer");
+    var joiningTimeContainer = document.getElementById("joiningTimeContainer");
+    var employmentStatus = document.getElementById("employmentStatus").value;
+
+    if (employmentStatus === "lastCTC") {
+      ctcInputContainer.style.display = "block";
+      joiningTimeContainer.style.display = "block";
+    } else {
+      ctcInputContainer.style.display = "none";
+      joiningTimeContainer.style.display = "none";
+    }
+  }
+
+  function validateDetailsForm() {
+    // ... (your existing validation code) ...
+    var joiningTime = document.getElementById("joiningTime").value;
+
+    // Additional validation for joining time if needed
+
+    alert("Form submitted successfully!");
+  }
+
+    function validateDetailsForm() {
+      var lastCompanyName = document.getElementById("lastCompanyName").value;
+      var designation = document.getElementById("designation").value;
+      var hscMarks = document.getElementById("hscMarks").value;
+      var sscMarks = document.getElementById("sscMarks").value;
+      var dob = document.getElementById("dob").value;
+      var employmentStatus = document.getElementById("employmentStatus").value;
+      var ctc = document.getElementById("ctc").value;
+      var ctc = document.getElementById("ctc1").value;
+
+      // Basic validation example (you can enhance this as needed)
+      if (!lastCompanyName || !designation || !hscMarks || !sscMarks || !dob || (employmentStatus === "lastCTC" && (!ctc || !ctc1))) {
+        alert("All fields are required. Please fill them out.");
+        return;
+      }
+
+      // Check age (below 21 years)
+      var today = new Date();
+      var birthDate = new Date(dob);
+      var age = today.getFullYear() - birthDate.getFullYear();
+
+      if (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      if (age < 21) {
+        alert("You must be at least 21 years old.");
+        return;
+      }
+
+      // You can add more specific validation checks for each field
+
+      // If validation passes, display success message
+      alert("Form submitted successfully!");
+    }
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+</body>
+</html>
